@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIS | Coca-Cola Calidad</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <link rel="icon" type="image/png" href="logo-coca-cola.png">
+
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2> <a href="index1.html">SIS Coca-Cola </a> </h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="almacen.html">📦 Almacén</a></li>
+                    <li><a href="ventas.html">💵 Ventas</a></li>
+                    <li><a href="recursos-humanos.html">👥 Recursos Humanos</a></li>
+                    <li><a href="marketing.html">📣 Marketing</a></li>
+                    <li><a href="contabilidad.html">🧾 Contabilidad</a>
+                    <li class="active"><a href="calidad.html">🧾 Calidad</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Sistema de Ingreso de Datos: Calidad</h1>
+                <p>Módulo de Operaciones Centrales</p>
+            </header>
+
+            <section id="almacen" class="data-module active-module">
+                <h2>Registro de Inventario (Calidad)</h2>
+                
+                <form id="form_inventario" onsubmit="return confirmarYGuardar('inventario');"> 
+                    <label for="tipo_movimiento">Entrada/Salida:</label>
+                    <select id="tipo_movimiento" name="tipo_movimiento">
+                        <option value="Entrada">Entrada</option>
+                        <option value="Salida">Salida</option>
+                    </select>
+
+                    <label for="producto">Producto:</label>
+                    <select id="producto" name="producto">
+                        <option value="cocacola-lata">Coca-Cola (Lata)</option>
+                        <option value="fanta-botella">Fanta (Botella 2L)</option>
+                        <option value="agua-ciel">Agua Ciel</option>
+                    </select>
+
+                    <label for="precio">precio (Cajas):</label>
+                    <input type="number" id="precio" name="precio" min="0.01" step="0.01" required>
+
+                    <label for="cantidad">Cantidad(Cajas):</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" required>
+
+                    <label for="cantidad_perdida">Cantidad de perdida(Cajas):</label>
+                    <input type="number" id="cantidad_perdida" name="cantidad_perdida" min="0" required
+                           title="Reporte aquí solo las cajas dañadas o caducadas.">
+
+                    <label for="cantidad_neta">Cantidad Neta (Cajas):</label>
+                    <input type="number" id="cantidad_neta" name="cantidad_neta" disabled>
+
+                    <label for="fecha">Fecha:</label>
+                    <input type="date" id="fecha" name="fecha" required>
+
+                    <button type="submit" class="btn-submit">Guardar Inventario</button>
+                    <button type="reset" class="btn-reset">Limpiar Campos</button>
+                </form>
+            </section>
+
+            <section id="empleados" class="data-module">
+                <h2>Registro de empleados (Calidad)</h2>
+                
+                <form id="form_empleados" onsubmit="return confirmarYGuardar('empleado');">
+                    <label for="emp_nombre">Nombre del Empleado:</label>
+                    <input type="text" id="emp_nombre" name="emp_nombre" required>
+                    
+                    <label for="emp_paterno">A. Paterno:</label>
+                    <input type="text" id="emp_paterno" name="emp_paterno" required>
+                    
+                    <label for="emp_materno">A. Materno:</label>
+                    <input type="text" id="emp_materno" name="emp_materno" required>
+                    
+                    <label for="emp_edad">Edad:</label>
+                    <input type="number" id="emp_edad" name="emp_edad" min="18" required>
+                    
+                    <label for="emp_id">ID:</label>
+                    <input type="text" id="emp_id" name="emp_id" required
+                           title="Ingrese el ID de 5 dígitos del empleado (ej. E-12345)">
+
+                    <button type="submit" class="btn-submit">Guardar Empleado</button>
+                    <button type="reset" class="btn-reset">Limpiar Campos</button>
+                </form>
+            </section>
+
+            <script>
+                // --- FUNCIÓN DE DOBLE ALERTA Y VALIDACIÓN AVANZADA (Función 4) ---
+                function confirmarYGuardar(tipo) {
+                    
+                    // 4.1. VALIDACIÓN LÓGICA
+                    if (tipo === 'inventario') {
+                        const cantidad = parseFloat(document.getElementById('cantidad').value) || 0;
+                        const perdida = parseFloat(document.getElementById('cantidad_perdida').value) || 0;
+
+                        if (perdida > cantidad) {
+                            alert("Error: La 'Cantidad de perdida' no puede ser mayor que la 'Cantidad' total.");
+                            return false; // Detiene el envío
+                        }
+                    }
+
+                    // (Este es tu código de confirmación que ya tenías)
+                    let mensajeConfirmacion = tipo === 'inventario' 
+                        ? "¿Estás seguro de que deseas guardar este inventario?" 
+                        : "¿Estás seguro de que deseas guardar este empleado?";
+
+                    if ( !confirm(mensajeConfirmacion) ) {
+                        return false; // Detiene el envío si el usuario cancela
+                    }
+
+                    alert("¡Se guardó correctamente!");
+
+                    // 4.2. AUTO-LIMPIEZA DEL FORMULARIO
+                    // (Limpia el formulario después de guardar con éxito)
+                    if (tipo === 'inventario') {
+                        document.getElementById('form_inventario').reset();
+                        // Resetea el campo calculado también
+                        document.getElementById('cantidad_neta').value = ''; 
+                    } else {
+                        document.getElementById('form_empleados').reset();
+                    }
+
+                    return false; // Evita que la página se recargue
+                }
+
+
+                // --- FUNCIÓN DE CÁLCULO EN TIEMPO REAL (Función 3) ---
+                
+                // 1. Identificar los campos
+                const campoCantidad = document.getElementById('cantidad');
+                const campoPerdida = document.getElementById('cantidad_perdida');
+                const campoNeta = document.getElementById('cantidad_neta');
+
+                // 2. Crear la función que calcula
+                function calcularNeto() {
+                    const cantidad = parseFloat(campoCantidad.value) || 0;
+                    const perdida = parseFloat(campoPerdida.value) || 0;
+                    const neto = cantidad - perdida;
+                    campoNeta.value = neto;
+                }
+
+                // 3. Escuchar los cambios en los campos
+                // (Se comprueba si existen para evitar errores en otras páginas)
+                if (campoCantidad && campoPerdida && campoNeta) {
+                    campoCantidad.addEventListener('input', calcularNeto);
+                    campoPerdida.addEventListener('input', calcularNeto);
+                }
+            </script>
+
+        </main>
+    </div>
+</body>
+</html>

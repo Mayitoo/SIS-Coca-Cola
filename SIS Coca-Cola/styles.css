@@ -1,0 +1,193 @@
+/*
+ * Estilos Generales y Reseteo
+ */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9; /* Fondo muy claro */
+    color: #333;
+}
+
+/*
+ * Estructura Principal del Dashboard
+ */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh; /* Ocupa toda la altura de la vista */
+}
+
+/*
+ * Barra Lateral (Sidebar - Departamentos)
+ */
+.sidebar {
+    width: 250px;
+    background-color: #e60000; /* Rojo Coca-Cola */
+    color: white;
+    padding: 20px 0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+    text-align: center;
+    padding: 10px 0 30px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo h2 {
+    margin: 0;
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li a {
+    display: block;
+    padding: 15px 20px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+nav li a:hover {
+    background-color: #cc0000; /* Rojo más oscuro al pasar el ratón */
+}
+
+nav li.active {
+    background-color: #cc0000;
+    border-left: 5px solid white;
+}
+
+/*
+ * Contenido Principal
+ */
+.content {
+    flex-grow: 1; /* Ocupa el espacio restante */
+    padding: 40px;
+    background-color: white;
+}
+
+.content-header {
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 15px;
+    margin-bottom: 30px;
+}
+
+.content-header h1 {
+    color: #e60000;
+    margin: 0 0 5px 0;
+}
+
+.content-header p {
+    color: #666;
+}
+
+/*
+ * Módulos de Datos (Formularios)
+ * Nota: Necesitarías JavaScript para cambiar el 'active-module' al hacer clic.
+ */
+.data-module {
+    /* Por defecto, todos los módulos estarían ocultos (simulación) */
+    /* display: none; */ 
+    
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* El módulo activo se hace visible */
+.active-module {
+    display: block;
+}
+
+.data-module h2 {
+    border-bottom: 1px dashed #e60000;
+    padding-bottom: 10px;
+    margin-top: 0;
+    color: #444;
+}
+
+/*
+ * Estilos de Formulario
+ */
+form {
+    display: grid;
+    gap: 15px;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+    margin-top: 5px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box; /* Asegura que el padding no afecte el width total */
+}
+
+.btn-submit {
+    background-color: #e60000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    margin-top: 10px;
+}
+
+.btn-submit:hover {
+    background-color: #cc0000;
+}
+
+/* ============================================= */
+/* 3. CÓDIGO AGREGADO: Estilos para el Menú Activo */
+/* ============================================= */
+
+/* Estilo para el enlace de la página actual (el que tiene class="active") */
+nav ul li.active a {
+    background-color: white;   /* Fondo blanco */
+    color: #E61D2B;          /* Color de texto rojo (Coca-Cola) */
+    font-weight: bold;         /* Texto en negrita */
+}
+
+/* (Opcional pero recomendado) Estilo para cuando pasas el mouse */
+nav ul li a:hover {
+    background-color: #a90000; /* Un rojo un poco más oscuro */
+}
+
+/* Para el menú (Función ya agregada) */
+nav ul li.active a {
+    background-color: white;
+    color: #E61D2B; 
+    font-weight: bold;
+}
+
+/* (Opcional) Estilo para el nuevo botón Reset (Función 1) */
+.btn-reset {
+    background-color: #767676; /* Un color gris */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-left: 10px; /* Espacio para separarlo del botón de guardar */
+}
+
+.btn-reset:hover {
+    background-color: #5a5a5a;
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIS | Coca-Cola Ventas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><a href="index1.html"> SIS Coca-Cola</a>  </h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="almacen.html">📦 Almacén</a></li>
+                    <li><a href="Ventas.html">💵 Ventas</a></li>
+                    <li><a href="recursos-humanos.html">👥 Recursos Humanos</a></li>
+                    <li><a href="marketing.html">📣 Marketing</a></li>
+                    <li><a href="contabilidad.html">🧾 Contabilidad</a></li>
+                    <li><a href="Calidad.html">🧾 Calidad.html</a></li>
+
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Sistema de Ingreso de Datos: Ventas</h1>
+                <p>Módulo de Operaciones Centrales</p>
+            </header>
+
+           <section id="almacen" class="data-module active-module">
+                <h2>Registro de Inventario (Ventas)</h2>
+                <form>
+                    <label for="producto">Producto:</label>
+                    <select id="producto" name="producto">
+                        <option value="cocacola-lata">Coca-Cola </option>
+                        <option value="fanta-botella">Fanta </option>
+                        <option value="agua-ciel">Agua Ciel</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad (Cajas):</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" required>
+
+                    <label for="fecha-ingreso">Fecha de Venta:</label>
+                    <input type="date" id="fecha-ingreso" name="fecha-ingreso" required>
+                    <label for="fecha-egreso">Fecha de Entrega:</label>
+                    <input type="date" id="fecha-egreso" name="fecha-egreso" required>
+                    <label for="total">Total (Precio):</label>
+                    <input type="number" id="total" name="total" min="1" required>
+                   
+                    <label for="total">Total (Precio c/u):</label>
+                    <input type="number" id="Tolal (Precio c/u)" name="Total Precio c/u" min="1" required>
+                    <label for="total">Cliente:</label>
+                    <input type="text" id="FK clientes" name="FK clientes" min="1" required>
+                    
+                   
+                    <button type="submit" class="btn-submit">Guardar Inventario</button>
+                </form>
+            </section>            
+
+           <section id="almacen" class="data-module active-module">
+                <h2>Registro (Ventas)</h2>
+                <form>
+                    <label for="ID">ID:</label>
+                    <select id="producto" name="producto">
+                        <option value=""> </option>
+                        <option value=""> </option>
+                        <option value=""></option>
+                    </select>
+
+                    <label for="nombre">Nombre:</label>
+                    <input type="number" id="nombre" name="nombre" min="1" required>
+
+                    <label for="Apellido Paterno ">Apellido Paterno:</label>
+                    <input type="text" id="Apellido Paterno " name="Apellido Paterno" required>
+                    <label for="Apellido Materno">Apellido Materno:</label>
+                    <input type="text" id="Apellido Materno" name="Apellido Materno" required>
+                    <label for="Edad">Edad:</label>
+                    <input type="number" id="Edad" name="Edad" min="1" required>
+                    
+                    <button type="submit" class="btn-submit">Guardar Inventario</button>
+                </form>
+            </section>            
+
+            </main>
+    </div>
+</body>
+</html>

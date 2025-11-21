@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIS | Coca-Cola Almacén</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2>SIS Coca-Cola</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="#almacen">📦 Almacén</a></li>
+                    <li><a href="#ventas">💵 Ventas</a></li>
+                    <li><a href="#recursos-humanos">👥 Recursos Humanos</a></li>
+                    <li><a href="#marketing">📣 Marketing</a></li>
+                    <li><a href="#contabilidad">🧾 Contabilidad</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Sistema de Ingreso de Datos</h1>
+                <p>Módulo de Operaciones Centrales</p>
+            </header>
+
+            <section id="almacen" class="data-module active-module">
+                <h2>Registro de Inventario (Almacén)</h2>
+                <form>
+                    <label for="producto">Producto:</label>
+                    <select id="producto" name="producto">
+                        <option value="cocacola-lata">Coca-Cola (Lata)</option>
+                        <option value="fanta-botella">Fanta (Botella 2L)</option>
+                        <option value="agua-ciel">Agua Ciel</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad (Cajas):</label>
+                    <input type="number" id="cantidad" name="cantidad" min="1" required>
+
+                    <label for="fecha-ingreso">Fecha de Ingreso:</label>
+                    <input type="date" id="fecha-ingreso" name="fecha-ingreso" required>
+
+                    <button type="submit" class="btn-submit">Guardar Inventario</button>
+                </form>
+            </section>
+
+            <section id="ventas" class="data-module">
+                <h2>Registro de Pedidos (Ventas)</h2>
+                <form>
+                    <label for="cliente">Nombre del Cliente:</label>
+                    <input type="text" id="cliente" name="cliente" required>
+
+                    <label for="monto">Monto Total ($):</label>
+                    <input type="number" id="monto" name="monto" step="0.01" min="0" required>
+                    
+                    <button type="submit" class="btn-submit">Registrar Venta</button>
+                </form>
+            </section>
+
+            </main>
+    </div>
+</body>
+</html>

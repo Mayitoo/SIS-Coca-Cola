@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- saved from url=(0050)file:///D:/HP%20A6/Downloads/Sistemas/almacen.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIS | Coca-Cola Almacén</title>
+    <link rel="stylesheet" href="./Almacén_files/styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><a href="file:///D:/HP%20A6/Downloads/Sistemas/index1.html"> SIS Coca-Cola Hola</a>  </h2>           </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="file:///D:/HP%20A6/Downloads/Sistemas/almacen.html">📦 Almacén</a></li>
+                    <li><a href="file:///D:/HP%20A6/Downloads/Sistemas/almacen.html#ventas">💵 Ventas</a></li>
+                    <li><a href="file:///D:/HP%20A6/Downloads/Sistemas/almacen.html#recursos-humanos">👥 Recursos Humanos</a></li>
+                    <li><a href="file:///D:/HP%20A6/Downloads/Sistemas/almacen.html#marketing">📣 Marketing</a></li>
+                    <li><a href="file:///D:/HP%20A6/Downloads/Sistemas/almacen.html#contabilidad">🧾 Contabilidad</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Sistema de Ingreso de Datos</h1>
+                <p>Módulo de Operaciones Centrales</p>
+            </header>
+
+            <section id="almacen" class="data-module active-module">
+                <h2>Registro de Inventario (Almacén)</h2>
+                <form>
+                    <label for="producto">Producto:</label>
+                    <select id="producto" name="producto">
+                        <option value="cocacola-lata">Coca-Cola (Lata)</option>
+                        <option value="fanta-botella">Fanta (Botella 2L)</option>
+                        <option value="agua-ciel">Agua Ciel</option>
+                    </select>
+
+                    <label for="cantidad">Cantidad (Cajas):</label>
+                    <select id="cantidad" name="cantidad">
+                         <option value="Entrada">Entrada</option>
+                         <option value="Salida">Salida</option> </select>
+
+                      
+
+                           <label for="producto">Precio:</label>
+                    <select id="producto" name="Precio">
+                         <option value="$10">$10</option>
+                         <option value="$8">$8</option>
+                         <option value="$7">$7</option>
+
+
+                   
+                    </select>
+                    
+                    <label for="fecha-ingreso">Fecha de Ingreso:</label>
+                    <input type="date" id="fecha-ingreso" name="fecha-ingreso" required="">
+
+                    <button type="submit" class="btn-submit">Guardar Inventario</button>
+                </form>
+                   <button type="submit" class="btn-submit">Eliminar Inventario</button>
+                
+                <button type="submit" class="btn-submit">Actualizar Inventario</button>
+                
+        
+            </section>
+
+            
+
+            </main>
+    </div>
+
+</body></html>

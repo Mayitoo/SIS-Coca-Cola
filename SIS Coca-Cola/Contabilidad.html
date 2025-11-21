@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIS | Coca-Cola Almacén</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <h2><a href="index1.html"> SIS Coca-Cola </a> </h2>
+            </div>
+            <nav>
+                <ul>
+                    <li class="active"><a href="almacen.html">📦 Almacén</a></li>
+                    <li><a href="ventas.html">💵 Ventas</a></li>
+                    <li><a href="recursos-humanos.html">👥 Recursos Humanos</a></li>
+                    <li><a href="marketing.html">📣 Marketing</a></li>
+                    <li><a href="Contabilidad.html">🧾 Contabilidad</a></li>
+                    <li><a href="calidad.html">🧾 Calidad</a></li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <header class="content-header">
+                <h1>Sistema de Ingreso de Datos: Contabilidad</h1>
+                <p>Módulo de Operaciones Centrales</p>
+            </header>
+            <section id="Contabilidad" class="data-module active-module">
+                
+                <h2>Registro de Inventario (Contabilidad)</h2>
+                <form id="form-inventario">
+                    
+                    <label for="producto-tipo">Producto: Entrada/Salida:</label>
+                    <select id="producto-tipo" name="producto-tipo">
+                        <option value="Entrada">Entrada </option>
+                        <option value="Salida">Salida </option>
+                    </select>
+
+                    <label for="producto-nombre">Producto:</label>
+                    <select id="producto-nombre" name="producto-nombre">
+                        <option value="cocacola-lata">Coca-Cola </option>
+                        <option value="fanta-botella">Fanta </option>
+                        <option value="agua-ciel">Agua Ciel</option>
+                    </select>
+
+                    <label for="cantidad-total">Cantidad (Total de Producto):</label>
+                    <input type="number" id="cantidad-total" name="cantidad-total" oninput="calcularTotal()" min="1" required>
+                    
+                    <label for="precio-unitario">Precio (Unitario) $:</label>
+                    <input type="number" id="precio-unitario" name="precio-unitario" oninput="calcularTotal()" step="0.01" min="0.01" required>
+
+                    <label for="fecha-ingreso">Fecha:</label>
+                    <input type="date" id="fecha-ingreso" name="fecha-ingreso" required>
+                    
+                    <label for="precio-total">Precio (Total) $:</label>
+                    <input type="number" id="precio-total" name="precio-total" readonly>
+                    
+                    <button type="reset" class="btn-reset">Limpiar Inventario</button>
+                </form>
+
+                <hr>
+                
+                <h2>Registro de Inventario (Empleados)</h2>
+                <form id="form-empleados">
+                    
+                    <label for="nombre-empleado">Nombre del Empleado:</label>
+                    <input type="text" id="nombre-empleado" name="nombre-empleado" required>
+                    <label for="apellido-paterno"> A. Paterno:</label>
+                    <input type="text" id="apellido-paterno" name="apellido-paterno" required>
+                    <label for="apellido-materno"> A. Materno:</label>
+                    <input type="text" id="apellido-materno" name="apellido-materno" required>
+                    <label for="id-empleado"> ID:</label>
+                    <input type="text" id="id-empleado" name="id-empleado" required>
+                    <label for="edad-empleado"> Edad:</label>
+                    <input type="number" id="edad-empleado" name="edad-empleado" min="18" required>
+                    
+                    <button type="reset" class="btn-reset"> Limpiar el inventario</button>
+                </form>
+                
+                <div style="margin-top: 30px; display: flex; justify-content: space-around;">
+                    <button type="button" class="btn-submit" onclick="validarYConfirmarUnificado()">
+                        💾 Guardar Todos los Registros
+                    </button>
+                    
+                    <button type="button" class="btn-secondary" onclick="actualizarInventario()">
+                        🔄 Actualizar Inventario
+                    </button>
+
+                    <button type="button" class="btn-danger" onclick="borrarTodosLosRegistros()">
+                        🗑️ Borrar Todos los Registros
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // 1. FUNCIÓN DE CÁLCULO AUTOMÁTICO
+        function calcularTotal() {
+            const cantidad = parseFloat(document.getElementById('cantidad-total').value) || 0;
+            const precioUnitario = parseFloat(document.getElementById('precio-unitario').value) || 0;
+            const total = cantidad * precioUnitario; 
+            
+            const precioTotalInput = document.getElementById('precio-total');
+            if (!isNaN(total)) {
+                precioTotalInput.value = total.toFixed(2);
+            } else {
+                precioTotalInput.value = '';
+            }
+        }
+
+        // 2. FUNCIÓN DE VALIDACIÓN Y CONFIRMACIÓN UNIFICADA (EXISTENTE)
+        function validarYConfirmarUnificado() {
+            const formInventario = document.getElementById('form-inventario');
+            const formEmpleados = document.getElementById('form-empleados');
+            let inventarioValido = formInventario.checkValidity();
+            let empleadosValido = formEmpleados.checkValidity();
+
+            let mensajeAlerta = "⚠️ Se intentará guardar la información. Confirme para continuar.";
+            let guardadoExitoso = true; 
+
+            // Mostrar errores de validación
+            if (!inventarioValido) {
+                formInventario.reportValidity();
+                alert('❌ Error: El formulario de INVENTARIO tiene campos incompletos o inválidos.');
+                guardadoExitoso = false;
+            }
+            if (!empleadosValido) {
+                formEmpleados.reportValidity();
+                alert('❌ Error: El formulario de EMPLEADOS tiene campos incompletos o inválidos.');
+                guardadoExitoso = false;
+            }
+            
+            // Si hay errores, detenemos el proceso
+            if (!guardadoExitoso) {
+                return;
+            }
+
+            // 3. Si ambos son válidos, pedimos una confirmación única
+            const confirmacion = confirm(mensajeAlerta);
+
+            if (confirmacion) {
+                // Si el usuario presiona ACEPTAR
+                
+                // Procesar Inventario
+                if (inventarioValido) {
+                    // Aquí iría el código para enviar los datos de Inventario
+                    formInventario.reset(); 
+                }
+
+                // Procesar Empleados
+                if (empleadosValido) {
+                    // Aquí iría el código para enviar los datos de Empleados
+                    formEmpleados.reset(); 
+                }
+                
+                alert('✅ ¡Guardado Exitoso! Los registros válidos han sido procesados y limpiados.');
+                
+            } else {
+                // El usuario presionó CANCELAR
+                alert('❌ Guardado de registros cancelado por el usuario.');
+            }
+            
+            return false; 
+        }
+
+        // 3. FUNCIÓN PARA BORRAR TODOS LOS REGISTROS (NUEVA)
+        function borrarTodosLosRegistros() {
+            const confirmacion = confirm("🚨 ADVERTENCIA: Esta acción eliminará *todos* los datos almacenados (Inventario y Empleados). ¿Está seguro?");
+            
+            if (confirmacion) {
+                // Si usaras localStorage, aquí se vaciaría: localStorage.clear();
+                alert("✅ Registros eliminados exitosamente. (Simulación de limpieza de base de datos).");
+                // Opcionalmente, puedes recargar la página para limpiar visualmente: window.location.reload();
+            } else {
+                alert("❌ Eliminación de registros cancelada.");
+            }
+        }
+
+        // 4. FUNCIÓN PARA ACTUALIZAR INVENTARIO (NUEVA)
+        function actualizarInventario() {
+            // En un sistema real, esta función solicitaría los datos más recientes al servidor.
+            alert("🔄 Solicitando los datos más recientes... Inventario actualizado. (Simulación de sincronización).");
+            
+            // En este punto, podrías llamar a una función que recargue las tablas de visualización.
+            // Ejemplo: cargarTablas(); 
+        }
+
+        // Asegura que las funciones de cálculo se inicialicen al cargar la página
+        document.addEventListener('DOMContentLoaded', (event) => {
+            calcularTotal();
+        });
+    </script>
+</body>
+</html>
